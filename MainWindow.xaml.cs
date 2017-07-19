@@ -334,7 +334,7 @@ namespace Microsoft.Samples.Kinect.BodyBasics
                     dc.DrawRectangle(Brushes.Black, null, new Rect(0.0, 0.0, this.displayWidth, this.displayHeight));
                     
                     
-                    //우측 상단에 Score 표시
+                    //우측 상단에 Score,Count 표시
                     FormattedText formattedText = new FormattedText("Your Score", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 15, Brushes.White);
                     System.Windows.Point TxTPosition = new System.Windows.Point(400, 10);
                     dc.DrawText(formattedText, TxTPosition);
@@ -342,7 +342,7 @@ namespace Microsoft.Samples.Kinect.BodyBasics
                     FormattedText ExerCnt = new FormattedText("Count", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 15, Brushes.White);
                     System.Windows.Point ExerCntPosition = new System.Windows.Point(410, 50);
                     dc.DrawText(ExerCnt, ExerCntPosition);
-                    //우측 상단에 Score 표시 끝
+                    //우측 상단에 Score,Count 표시 끝
 
                     int penIndex = 0;
                     foreach (Body body in this.bodies)
@@ -374,11 +374,10 @@ namespace Microsoft.Samples.Kinect.BodyBasics
 
                             this.DrawBody(joints, jointPoints, dc, drawPen);
 
-                            // 여기서부터 코드추가 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                            /*  여기서는 부울형식의 변수를 두개,메소드도 만듦 내용은 예제랑은 조금다르게 내가수정함
-                             *  예제에서는 왼손오른손을 한번에 통제하는데 , 나는 두개로 나눠서 통제.
-                             */
+                            // 코드 추가 (변수 선언 및 메소드 선언)
+                            //오른손이 오른쪽 어깨보다 높이 올라가면 50 출력
                             int isRightHandOverHead = IsHandOverLeftShoulder(body, JointType.HandRight);
+                            //왼손이 오른쪽 어깨보다 높이 올라가면 50 출력
                             int isLeftHandOverHead = IsHandOverRightShoulder(body, JointType.HandLeft);
 
 
@@ -389,7 +388,6 @@ namespace Microsoft.Samples.Kinect.BodyBasics
                             this.DrawHandB(isRightHandOverHead, jointPoints[JointType.HandLeft], dc);
 
 
-                            //여기까지 코드추가 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
                             int scoreTemp = IsHandOverLeftShoulder(body, JointType.HandRight) + IsHandOverRightShoulder(body, JointType.HandLeft);
                             if(scoreTemp == 100 & isCnt)
                             {
@@ -411,6 +409,7 @@ namespace Microsoft.Samples.Kinect.BodyBasics
                             FormattedText cntText = new FormattedText(cnt, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 15, Brushes.White);
                             System.Windows.Point cntPosition = new System.Windows.Point(430, 70);
                             dc.DrawText(cntText, cntPosition);
+                            //여기까지 코드 추가
 
 
                         }
