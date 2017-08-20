@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Samples.Kinect.BodyBasics.Properties {
+namespace Microsoft.Samples.Kinect.ControlsBasics.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Microsoft.Samples.Kinect.BodyBasics.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Samples.Kinect.BodyBasics.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Samples.Kinect.ControlsBasics.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,37 +61,54 @@ namespace Microsoft.Samples.Kinect.BodyBasics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You selected: {0}.
+        /// </summary>
+        internal static string SelectedMessage {
+            get {
+                return ResourceManager.GetString("SelectedMessage", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Failed to write screenshot to {0}.
         /// </summary>
-        internal static string FailedScreenshotStatusTextFormat {
-            get {
+        internal static string FailedScreenshotStatusTextFormat
+        {
+            get
+            {
                 return ResourceManager.GetString("FailedScreenshotStatusTextFormat", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to No ready Kinect found!.
         /// </summary>
-        internal static string NoSensorStatusText {
-            get {
+        internal static string NoSensorStatusText
+        {
+            get
+            {
                 return ResourceManager.GetString("NoSensorStatusText", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Running.
         /// </summary>
-        internal static string RunningStatusText {
-            get {
+        internal static string RunningStatusText
+        {
+            get
+            {
                 return ResourceManager.GetString("RunningStatusText", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Kinect not available!.
         /// </summary>
-        internal static string SensorNotAvailableStatusText {
-            get {
+        internal static string SensorNotAvailableStatusText
+        {
+            get
+            {
                 return ResourceManager.GetString("SensorNotAvailableStatusText", resourceCulture);
             }
         }
