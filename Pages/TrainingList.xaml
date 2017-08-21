@@ -17,7 +17,7 @@
                     <ScrollViewer Grid.Row="0" Name="scrollViewer" 
                                   HorizontalScrollBarVisibility="Auto"
                                   VerticalScrollBarVisibility="Disabled">
-                        <ItemsControl Grid.Row="0" Name="itemsControl" ItemTemplate="{StaticResource Kinect250x250ItemTemplate}">
+                        <ItemsControl Grid.Row="0" Name="itemsControl" ItemTemplate="{StaticResource Kinect550x250ItemTemplate}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapPanel VerticalAlignment="Center" Orientation="Vertical" Margin="75,0,75,0" />

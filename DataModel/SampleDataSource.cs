@@ -39,6 +39,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
         private static Uri darkGrayImage = new Uri("Assets/DarkGray.png", UriKind.Relative);
         private static Uri mediumGrayImage = new Uri("assets/mediumGray.png", UriKind.Relative);
         private static Uri lightGrayImage = new Uri("assets/lightGray.png", UriKind.Relative);
+        private static Uri sideLateralRaiseImage = new Uri("Images/beach.jpg", UriKind.Relative);
 
         public SampleDataSource()
         {
@@ -51,24 +52,24 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
                     "Group-1",
                     "Group Title: 3",
                     "Group Subtitle: 3",
-                    SampleDataSource.mediumGrayImage,
+                    "Assets/lightGray.png",
                     "Group Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor scelerisque lorem in vehicula. Aliquam tincidunt, lacus ut sagittis tristique, turpis massa volutpat augue, eu rutrum ligula ante a ante");
             group1.Items.Add(
                     new SampleDataItem(
                         "Group-1-Item-1",
-                        "Buttons",
+                        "운동목록", // 해당 아이템의 제목
                         string.Empty,
-                        SampleDataSource.darkGrayImage,
+                        "Images/health.jpg", // 해당 아이템의 이미지 URL
                         "Several types of buttons with custom styles",
                         itemContent,
                         group1,
-                        typeof(ButtonSample)));
+                        typeof(TrainingList))); // 해당 아이템의 Pages 컴포넌트 이름
             group1.Items.Add(
                     new SampleDataItem(
                         "SideLateralRaise",
-                        "SideLateralRaise",
+                        "사이드레터럴레이즈",
                         string.Empty,
-                        SampleDataSource.darkGrayImage,
+                        "Images/sidelateralraise.jpg",
                         "SideLateralRaise",
                         itemContent,
                         group1,
@@ -78,7 +79,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
                         "Group-1-Item-2",
                         "CheckBoxes and RadioButtons",
                         string.Empty,
-                        SampleDataSource.mediumGrayImage,
+                        "Assets/lightGray.png",
                         "CheckBox and RadioButton controls",
                         itemContent,
                         group1,
@@ -88,41 +89,11 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
                         "Group-1-Item-5",
                         "Zoomable Photo",
                         string.Empty,
-                        SampleDataSource.lightGrayImage,
+                        "Assets/lightGray.png",
                         "ScrollViewer control hosting a photo, enabling scrolling and zooming.",
                         itemContent,
                         group1,
                         typeof(ScrollViewerSample)));
-            group1.Items.Add(
-                    new SampleDataItem(
-                        "Group-1-Item-6",
-                        "Kinect Pointer Events",
-                        string.Empty,
-                        SampleDataSource.lightGrayImage,
-                        "Example of how to get KinectPointerPoints.",
-                        itemContent,
-                        group1,
-                        typeof(KinectPointerPointSample)));
-            group1.Items.Add(
-                    new SampleDataItem(
-                        "Group-1-Item-7",
-                        "Engagement and Cursor Settings",
-                        "",
-                        SampleDataSource.darkGrayImage,
-                        "Enables user to switch between engagement models and cursor visuals.",
-                        itemContent,
-                        group1,
-                        typeof(EngagementSettings)));
-            group1.Items.Add(
-                    new SampleDataItem(
-                        "Group-1-Item-6",
-                        "Item Title: 6",
-                        "Item Subtitle: 6",
-                        SampleDataSource.darkGrayImage,
-                        "Item Description: Pellentesque porta, mauris quis interdum vehicula, urna sapien ultrices velit, nec venenatis dui odio in augue. Cras posuere, enim a cursus convallis, neque turpis malesuada erat, ut adipiscing neque tortor ac erat.",
-                        itemContent,
-                        group1));
-            
             this.AllGroups.Add(group1);
         }
 
@@ -162,6 +133,9 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:FileHeaderFileNameDocumentationMustMatchTypeName", Justification = "Reviewed.")]
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "File is from Windows Store template")]
+
+
+    // Uri로 되어있던 imagePath를 string으로 변경
     public abstract class SampleDataCommon : BindableBase
     {
         /// <summary>
@@ -197,7 +171,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
         /// <summary>
         /// Field to store image path
         /// </summary>
-        private Uri imagePath = null;
+        private string imagePath = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SampleDataCommon" /> class.
@@ -207,7 +181,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
         /// <param name="subtitle">The subtitle of this item.</param>
         /// <param name="imagePath">A relative path of the image for this item.</param>
         /// <param name="description">A description of this item.</param>
-        protected SampleDataCommon(string uniqueId, string title, string subtitle, Uri imagePath, string description)
+        protected SampleDataCommon(string uniqueId, string title, string subtitle, string imagePath, string description)
         {
             this.uniqueId = uniqueId;
             this.title = title;
@@ -262,7 +236,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
             }
         }
 
-        public void SetImage(Uri path)
+        public void SetImage(string path)
         {
             this.image = null;
             this.imagePath = path;
@@ -286,7 +260,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
         private SampleDataCollection group;
         private Type navigationPage;
 
-        public SampleDataItem(string uniqueId, string title, string subtitle, Uri imagePath, string description, string content, SampleDataCollection group)
+        public SampleDataItem(string uniqueId, string title, string subtitle, string imagePath, string description, string content, SampleDataCollection group)
             : base(uniqueId, title, subtitle, imagePath, description)
         {
             this.content = content;
@@ -305,7 +279,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
         /// <param name="content">The content of this item.</param>
         /// <param name="group">The group of this item.</param>
         /// <param name="navigationPage">What page should launch when clicking this item.</param>
-        public SampleDataItem(string uniqueId, string title, string subtitle, Uri imagePath, string description, string content, SampleDataCollection group, Type navigationPage)
+        public SampleDataItem(string uniqueId, string title, string subtitle, string imagePath, string description, string content, SampleDataCollection group, Type navigationPage)
             : base(uniqueId, title, subtitle, imagePath, description)
         {
             this.content = content;
@@ -340,7 +314,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
         private ObservableCollection<SampleDataItem> items = new ObservableCollection<SampleDataItem>();
         private ObservableCollection<SampleDataItem> topItem = new ObservableCollection<SampleDataItem>();
 
-        public SampleDataCollection(string uniqueId, string title, string subtitle, Uri imagePath, string description)
+        public SampleDataCollection(string uniqueId, string title, string subtitle, string imagePath, string description)
             : base(uniqueId, title, subtitle, imagePath, description)
         {
             this.Items.CollectionChanged += this.ItemsCollectionChanged;

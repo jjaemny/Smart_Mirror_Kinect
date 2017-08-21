@@ -85,15 +85,17 @@
         </Setter>
     </Style>
 
-    <DataTemplate x:Key="Kinect250x250ItemTemplate">
+    <!--//////////////////////////////////////////////-->
+    <!-- 첫 화면 리스트에서 각 아이템을 구성하는 부분 -->
+    <!--//////////////////////////////////////////////-->
+    <DataTemplate x:Key="Kinect550x250ItemTemplate">
         <Button Margin="3" Style="{StaticResource KinectTileButton}">
-            <Grid HorizontalAlignment="Left" Width="250" Height="250">
+            <Grid HorizontalAlignment="Left" Width="550" Height="250" Margin="10">
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
                     <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
                 <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                    <TextBlock Text="{Binding Title}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
-                    <TextBlock Text="{Binding Subtitle}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                    <TextBlock Text="{Binding Title}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="30" Margin="15,0,15,0"/>
                 </StackPanel>
             </Grid>
         </Button>

@@ -41,10 +41,10 @@
                                   HorizontalScrollBarVisibility="Auto"
                                   VerticalScrollBarVisibility="Disabled" 
                                   k:KinectRegion.IsScrollInertiaEnabled="true" >
-                        <ItemsControl Grid.Row="0" Name="itemsControl" ItemTemplate="{StaticResource Kinect250x250ItemTemplate}" Button.Click="ButtonClick">
+                        <ItemsControl Grid.Row="0" Name="itemsControl" ItemTemplate="{StaticResource Kinect550x250ItemTemplate}" Button.Click="ButtonClick">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <WrapPanel VerticalAlignment="Center" Orientation="Vertical" Margin="75,0,75,0" />
+                                    <WrapPanel VerticalAlignment="Center" Orientation="Vertical" Margin="40,0,40,0" />
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                         </ItemsControl>
