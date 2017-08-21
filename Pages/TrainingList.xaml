@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Microsoft.Samples.Kinect.ControlsBasics.TrainingList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:k="http://schemas.microsoft.com/kinect/2014"
+      Height="700" Width="1200"
+	  >
+
+    <k:KinectRegion x:Name="kinectRegion">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <ContentControl Grid.Row="1" x:Name="navigationRegion">
+                <Grid x:Name="kinectRegionGrid" Margin="10,20,10,20">
+                    <ScrollViewer Grid.Row="0" Name="scrollViewer" 
+                                  HorizontalScrollBarVisibility="Auto"
+                                  VerticalScrollBarVisibility="Disabled">
+                        <ItemsControl Grid.Row="0" Name="itemsControl" ItemTemplate="{StaticResource Kinect250x250ItemTemplate}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel VerticalAlignment="Center" Orientation="Vertical" Margin="75,0,75,0" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </ContentControl>
+        </Grid>
+    </k:KinectRegion>
+</UserControl>
