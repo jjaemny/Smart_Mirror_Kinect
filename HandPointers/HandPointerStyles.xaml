@@ -67,14 +67,16 @@
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal"/>
+                                <!-- 리스트 버튼 hover -->
                                 <VisualState x:Name="MouseOver">
                                     <Storyboard>
-                                        <ColorAnimation Duration="0" Storyboard.TargetName="focusRectBrush" Storyboard.TargetProperty="Color" To="Gray"/>
+                                        <ColorAnimation Duration="0" Storyboard.TargetName="focusRectBrush" Storyboard.TargetProperty="Color" To="#e67e22"/>
                                     </Storyboard>
                                 </VisualState>
+                                <!-- 리스트 버튼 press -->
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
-                                        <ColorAnimation Duration="0" Storyboard.TargetName="focusRectBrush" Storyboard.TargetProperty="Color" To="Gray"/>
+                                        <ColorAnimation Duration="0" Storyboard.TargetName="focusRectBrush" Storyboard.TargetProperty="Color" To="#c0392b"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -89,13 +91,13 @@
     <!-- 첫 화면 리스트에서 각 아이템을 구성하는 부분 -->
     <!--//////////////////////////////////////////////-->
     <DataTemplate x:Key="Kinect550x250ItemTemplate">
-        <Button Margin="3" Style="{StaticResource KinectTileButton}">
-            <Grid HorizontalAlignment="Left" Width="550" Height="250" Margin="10">
+        <Button Margin="10" Style="{StaticResource KinectTileButton}">
+            <Grid HorizontalAlignment="Left" Width="550" Height="250">
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
                     <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
-                <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                    <TextBlock Text="{Binding Title}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="30" Margin="15,0,15,0"/>
+                <StackPanel VerticalAlignment="Bottom" Background="#34495e">
+                    <TextBlock Text="{Binding Title}" Foreground="#fff" Style="{StaticResource TitleTextStyle}" Height="30" Margin="15,0,15,0"/>
                 </StackPanel>
             </Grid>
         </Button>
@@ -1166,7 +1168,7 @@
                         <Border Padding="{TemplateBinding Padding}" Background="Transparent">
                             <Grid Margin="-1,-16,0,0">
                                 <TextBlock x:Name="BackgroundGlyph" Text="&#xE0A8;" Foreground="Black" Opacity="0" FontFamily="Segoe UI Symbol" FontSize="56" />
-                                <TextBlock x:Name="NormalGlyph" Text="&#xE071;" Foreground="Black" FontFamily="Segoe UI Symbol" FontSize="56" />
+                                <TextBlock x:Name="NormalGlyph" Text="&#xE071;" Foreground="White" FontFamily="Segoe UI Symbol" FontSize="56" />
                                 <TextBlock x:Name="ArrowGlyph" Text="&#xE0A6;" Foreground="White" Opacity="0" FontFamily="Segoe UI Symbol" FontSize="56"/>
                             </Grid>
                         </Border>

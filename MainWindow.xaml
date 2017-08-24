@@ -23,6 +23,9 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
+            <!--///////////////////////-->
+            <!-- 메인윈도우의 헤드부분 -->
+            <!--///////////////////////-->
             <Grid Grid.Row="0" Margin="0" Background="#34495e">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -35,6 +38,9 @@
                 <TextBlock Grid.Column="1" HorizontalAlignment="Right" Padding="15 15 15 15" Margin="0,0,-2,-0.499" VerticalAlignment="Bottom" Foreground="White" FontSize="24" Grid.RowSpan="3" Grid.Row="1">User: SY</TextBlock>
             </Grid>
 
+            <!--///////////////////////-->
+            <!-- 메인윈도우의 바디부분 -->
+            <!--///////////////////////-->
             <ContentControl Grid.Row="1" x:Name="navigationRegion">
                 <Grid x:Name="kinectRegionGrid" Margin="10,20,10,20">
                     <ScrollViewer Grid.Row="0" Name="scrollViewer" 
