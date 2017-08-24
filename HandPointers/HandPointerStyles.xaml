@@ -54,7 +54,8 @@
     <SolidColorBrush x:Key="ListViewItemOverlayBackgroundThemeBrush" Color="DarkGray" />
     <SolidColorBrush x:Key="ListViewItemOverlayForegroundThemeBrush" Color="Yellow" />
     <SolidColorBrush x:Key="ListViewItemOverlaySecondaryForegroundThemeBrush" Color="Aqua"/>
-    
+
+    <!-- 메인 리스트의 각 아이템 버튼 -->
     <Style x:Key="KinectTileButton" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
@@ -87,12 +88,12 @@
         </Setter>
     </Style>
 
-    <!--//////////////////////////////////////////////-->
-    <!-- 첫 화면 리스트에서 각 아이템을 구성하는 부분 -->
-    <!--//////////////////////////////////////////////-->
-    <DataTemplate x:Key="Kinect550x250ItemTemplate">
+    <!--///////////////////-->
+    <!-- 메인 리스트 마크업-->
+    <!--///////////////////-->
+    <DataTemplate x:Key="MainListTemplate">
         <Button Margin="10" Style="{StaticResource KinectTileButton}">
-            <Grid HorizontalAlignment="Left" Width="550" Height="250">
+            <Grid HorizontalAlignment="Center" Width="550" Height="250">
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
                     <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
@@ -102,7 +103,23 @@
             </Grid>
         </Button>
     </DataTemplate>
-    
+
+    <!--////////////////////-->
+    <!-- 운동 리스트 마크업 -->
+    <!--////////////////////-->
+    <DataTemplate x:Key="TrainingListTemplete">
+        <Button Margin="10" Style="{StaticResource KinectTileButton}">
+            <Grid HorizontalAlignment="Center" Width="550" Height="250">
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                    <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                </Border>
+                <StackPanel VerticalAlignment="Bottom" Background="#34495e">
+                    <TextBlock Text="{Binding Title}" Foreground="#fff" Style="{StaticResource TitleTextStyle}" Height="30" Margin="15,0,15,0"/>
+                </StackPanel>
+            </Grid>
+        </Button>
+    </DataTemplate>
+
     <!-- Button Text Style -->
     <Style x:Key="ButtonTextStyle" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="Segoe UI" />

@@ -42,12 +42,12 @@
             <!-- 메인윈도우의 바디부분 -->
             <!--///////////////////////-->
             <ContentControl Grid.Row="1" x:Name="navigationRegion">
-                <Grid x:Name="kinectRegionGrid" Margin="10,20,10,20">
+                <Grid x:Name="kinectRegionGrid">
                     <ScrollViewer Grid.Row="0" Name="scrollViewer" 
                                   HorizontalScrollBarVisibility="Auto"
                                   VerticalScrollBarVisibility="Disabled" 
                                   k:KinectRegion.IsScrollInertiaEnabled="true" >
-                        <ItemsControl Grid.Row="0" Name="itemsControl" ItemTemplate="{StaticResource Kinect550x250ItemTemplate}" Button.Click="ButtonClick">
+                        <ItemsControl Grid.Row="0" Name="itemsControl" ItemTemplate="{StaticResource MainListTemplate}" Button.Click="MainItemButtonClick">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapPanel VerticalAlignment="Center" Orientation="Vertical" Margin="40,0,40,0" />

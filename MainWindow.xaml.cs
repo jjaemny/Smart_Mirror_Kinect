@@ -43,7 +43,9 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Event arguments</param>
-        private void ButtonClick(object sender, RoutedEventArgs e)
+
+        // 메인 리스트에서 버튼 클릭시 이벤트
+        private void MainItemButtonClick(object sender, RoutedEventArgs e)
         {            
             var button = (Button)e.OriginalSource;
             SampleDataItem sampleDataItem = button.DataContext as SampleDataItem;

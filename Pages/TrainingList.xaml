@@ -12,15 +12,15 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <ContentControl Grid.Row="1" x:Name="navigationRegion">
-                <Grid x:Name="kinectRegionGrid" Margin="10,20,10,20">
+            <ContentControl Grid.Row="1" x:Name="navigationRegion" Margin="0 0 0 45">
+                <Grid x:Name="kinectRegionGrid">
                     <ScrollViewer Grid.Row="0" Name="scrollViewer" 
                                   HorizontalScrollBarVisibility="Auto"
                                   VerticalScrollBarVisibility="Disabled">
-                        <ItemsControl Grid.Row="0" Name="itemsControl" ItemTemplate="{StaticResource Kinect550x250ItemTemplate}">
+                        <ItemsControl Grid.Row="0" Name="itemsControl" ItemTemplate="{StaticResource TrainingListTemplete}" Button.Click="TrainingItemButtonClick">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <WrapPanel VerticalAlignment="Center" Orientation="Vertical" Margin="75,0,75,0" />
+                                    <WrapPanel VerticalAlignment="Center" Orientation="Vertical"/>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                         </ItemsControl>
