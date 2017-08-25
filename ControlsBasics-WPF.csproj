@@ -65,6 +65,7 @@
     </ApplicationDefinition>
     <Compile Include="Common\BindableBase.cs" />
     <Compile Include="DataModel\SampleDataSource.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="HandPointers\HandInScreenEngagementModel.cs" />
     <Compile Include="Pages\ButtonSample.xaml.cs">
       <DependentUpon>ButtonSample.xaml</DependentUpon>
@@ -90,6 +91,9 @@
     </Compile>
     <Compile Include="Pages\SliderSample.xaml.cs">
       <DependentUpon>SliderSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TrainingList.xaml.cs">
+      <DependentUpon>TrainingList.xaml</DependentUpon>
     </Compile>
     <Compile Include="SelectionDisplay.xaml.cs">
       <DependentUpon>SelectionDisplay.xaml</DependentUpon>
@@ -146,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\TrainingList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SelectionDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,6 +207,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\CursorSpriteSheet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\health.jpg" />
+    <Resource Include="Images\sidelateralraise.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
