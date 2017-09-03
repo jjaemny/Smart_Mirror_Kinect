@@ -384,10 +384,14 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
                             this.DrawBody(joints, jointPoints, dc, drawPen);
 
                             // 코드 추가 (변수 선언 및 메소드 선언)
-                            //오른손이 오른쪽 어깨보다 높이 올라가면 50 출력
-                            int isRightHandOverHead = IsHandOverLeftShoulder(body, JointType.HandRight);
-                            //왼손이 오른쪽 어깨보다 높이 올라가면 50 출력
-                            int isLeftHandOverHead = IsHandOverRightShoulder(body, JointType.HandLeft);
+                            //왼손을 쭉 뻗는다면 25
+                            int isLeftHandOverHead = isLeftHandStraight(body, JointType.HandRight);
+                            //오른손을 쭉 뻗는다면 25
+                            int isRightHandOverHead = isRightHandStraight(body, JointType.HandLeft);
+                            //왼쪽 하체가 정상이라면 25
+                            int leftLeg = isLeftLeg(body);
+                            //오른쪽 하체가 정상이라면 25
+                            int rightLeg = isRightLeg(body);
 
 
 
@@ -397,7 +401,9 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
                             this.DrawHandB(isRightHandOverHead, jointPoints[JointType.HandLeft], dc);
 
 
-                            int scoreTemp = IsHandOverLeftShoulder(body, JointType.HandRight) + IsHandOverRightShoulder(body, JointType.HandLeft);
+                            //int scoreTemp = isLeftHandOverHead + isRightHandOverHead + leftLeg + rightLeg;
+                            int scoreTemp = isLeftHandStraight(body, JointType.HandRight) + isRightHandStraight(body, JointType.HandLeft) + isLeftLeg(body) + isRightLeg(body);
+
                             if (scoreTemp == 100 & isCnt)
                             {
                                 count++;
@@ -435,22 +441,47 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
          * 헤드에대한 변수와 핸드에대한 변수를 두개 만들어서 높이의 값이 참이면 isDected 에 true 아니면 false할당
          * 그리고 리턴시킴 
          */
-        private int IsHandOverLeftShoulder(Body body, JointType Hand)
+
+        private int isLeftHandStraight(Body body, JointType Hand)
         {
             var leftShoulder = body.Joints[JointType.ShoulderLeft];
             var hand = body.Joints[JointType.HandLeft];
-            int leftScore = (hand.Position.Y > leftShoulder.Position.Y) ? 50 : 0;
+            var elbow = body.Joints[JointType.ElbowLeft];
+            //int leftScore = (hand.Position.Y == leftShoulder.Position.Y && leftShoulder.Position.Y == elbow.Position.Y) ? 25 : 0;
+            int leftScore = ((hand.Position.Y > leftShoulder.Position.Y) && (leftShoulder.Position.Y < elbow.Position.Y)) ? 25 : 0;
             return leftScore;
         }
 
-
-        private int IsHandOverRightShoulder(Body body, JointType Hand)
+        private int isRightHandStraight(Body body, JointType Hand)
         {
             var rightShoulder = body.Joints[JointType.ShoulderRight];
             var hand = body.Joints[JointType.HandRight];
-            int rightScore = (hand.Position.Y > rightShoulder.Position.Y) ? 50 : 0;
+            var elbow = body.Joints[JointType.ElbowRight];
+            //int rightScore = (hand.Position.Y == rightShoulder.Position.Y && rightShoulder.Position.Y == elbow.Position.Y) ? 25 : 0;
+            int rightScore = (hand.Position.Y > rightShoulder.Position.Y && (rightShoulder.Position.Y < elbow.Position.Y)) ? 25 : 0;
             return rightScore;
         }
+
+        private int isRightLeg(Body body)
+        {
+            var knee = body.Joints[JointType.KneeRight];
+            var ankle = body.Joints[JointType.AnkleRight];
+            var hip = body.Joints[JointType.HipRight];
+            //int Score = (knee.Position.X == ankle.Position.X && knee.Position.Y == hip.Position.Y) ? 25 : 0;
+            int Score = (knee.Position.Y > hip.Position.Y) ? 25 : 0;
+            return Score;
+        }
+
+        private int isLeftLeg(Body body)
+        {
+            var knee = body.Joints[JointType.KneeLeft];
+            var ankle = body.Joints[JointType.AnkleLeft];
+            var hip = body.Joints[JointType.HipLeft];
+            //int Score = (knee.Position.X == ankle.Position.X && knee.Position.Y == hip.Position.Y) ? 25 : 0;
+            int Score = (knee.Position.Y > hip.Position.Y) ? 25 : 0;
+            return Score;
+        }
+
 
         // 여기까지 코드추가 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
 
@@ -546,7 +577,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
                     break;
                 case 50:
                     drawingContext.DrawEllipse(this.handOpenBrush, null, handPosition, HandSize, HandSize);
-                    System.Console.WriteLine("왼쪽 어깨보다 높아졌다.");
+                    System.Console.WriteLine("왼손을 앞으로 쭉 뻗었다.");
 
                     break;
             }
@@ -560,7 +591,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
                     break;
                 case 50:
                     drawingContext.DrawEllipse(this.handOpenBrush, null, handPosition, HandSize, HandSize);
-                    System.Console.WriteLine("오른쪽 어깨보다 높아졌다.");
+                    System.Console.WriteLine("오른손을 앞으로 쭉 뻗었다.");
                     break;
             }
         }

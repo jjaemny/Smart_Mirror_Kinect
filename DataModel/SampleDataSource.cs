@@ -87,7 +87,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
                         "CheckBox and RadioButton controls",
                         itemContent,
                         group1,
-                        typeof(CheckBoxRadioButtonSample)));
+                        typeof(Squat)));
             group1.Items.Add(
                     new SampleDataItem(
                         "Group-1-Item-5",
