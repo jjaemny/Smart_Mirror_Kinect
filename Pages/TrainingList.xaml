@@ -4,12 +4,11 @@
       xmlns:k="http://schemas.microsoft.com/kinect/2014"
 	  >
 
-    <k:KinectRegion x:Name="kinectRegion">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
         <ContentControl Grid.Row="1" x:Name="navigationRegion">
             <Grid x:Name="kinectRegionGrid">
