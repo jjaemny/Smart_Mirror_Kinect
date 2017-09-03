@@ -73,7 +73,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
                         "SideLateralRaise",
                         "사이드레터럴레이즈",
                         string.Empty,
-                        "Images/sidelateralraise.jpg",
+                        "Images/sidelateralraise.png",
                         "SideLateralRaise",
                         itemContent,
                         group1,
@@ -97,7 +97,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
                         "ScrollViewer control hosting a photo, enabling scrolling and zooming.",
                         itemContent,
                         group1,
-                        typeof(DumbbellShoulderPress)));
+                        typeof(Squat)));
             this.AllGroups.Add(group1);
         }
 
@@ -442,9 +442,9 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
             group1.Items.Add(
                     new TrainingDataItem(
                         "Group-1-Item-1",
-                        "운동1",
+                        "사이드레터럴레이즈",
                         string.Empty,
-                        "Images/clouds.jpg",
+                        "Images/sidelateralraise.png",
                         "Several types of buttons with custom styles",
                         itemContent,
                         group1,
@@ -452,9 +452,9 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
             group1.Items.Add(
                     new TrainingDataItem(
                         "SideLateralRaise",
-                        "운동2",
+                        "해머컬",
                         string.Empty,
-                        "Images/clouds.jpg",
+                        "Images/hammercurl.png",
                         "SideLateralRaise",
                         itemContent,
                         group1,
@@ -462,9 +462,9 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
             group1.Items.Add(
                     new TrainingDataItem(
                         "Group-1-Item-2",
-                        "운동3",
+                        "스쿼트",
                         string.Empty,
-                        "Assets/lightGray.png",
+                        "Images/squat.png",
                         "CheckBox and RadioButton controls",
                         itemContent,
                         group1,
@@ -472,9 +472,9 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
             group1.Items.Add(
                     new TrainingDataItem(
                         "Group-1-Item-5",
-                        "운동4",
+                        "숄더프레스",
                         string.Empty,
-                        "Assets/lightGray.png",
+                        "Images/shoulderpress.png",
                         "ScrollViewer control hosting a photo, enabling scrolling and zooming.",
                         itemContent,
                         group1,

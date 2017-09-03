@@ -110,7 +110,7 @@
     <DataTemplate x:Key="TrainingListTemplete">
         <Button Margin="20,0,0,0" Style="{StaticResource KinectTileButton}">
             <Grid HorizontalAlignment="Center" Width="600" Height="300">
-                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                <Border Background="Black"> 
                     <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
                 <StackPanel VerticalAlignment="Bottom" Background="#34495e">
