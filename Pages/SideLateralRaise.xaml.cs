@@ -409,10 +409,10 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
                             {
                                 isCnt = true;
                             }
-                            String score = scoreTemp.ToString();
-                            FormattedText GetScore = new FormattedText(score, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 15, Brushes.White);
-                            System.Windows.Point ScorePosition = new System.Windows.Point(430, 30);
-                            dc.DrawText(GetScore, ScorePosition);
+                            String result = feedback(body);
+                            FormattedText getFeedback = new FormattedText(result, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 15, Brushes.White);
+                            System.Windows.Point ScorePosition = new System.Windows.Point(200, 30);
+                            dc.DrawText(getFeedback, ScorePosition);
 
                             String cnt = count.ToString();
                             FormattedText cntText = new FormattedText(cnt, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 15, Brushes.White);
@@ -438,8 +438,8 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
         private int IsHandOverLeftShoulder(Body body, JointType Hand)
         {
             var leftShoulder = body.Joints[JointType.ShoulderLeft];
-            var hand = body.Joints[JointType.HandLeft];
-            int leftScore = (hand.Position.Y > leftShoulder.Position.Y) ? 50 : 0;
+            var leftElbow = body.Joints[JointType.ElbowLeft];
+            int leftScore = (leftElbow.Position.Y > leftShoulder.Position.Y) ? 50 : 0;
             return leftScore;
         }
 
@@ -447,9 +447,44 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
         private int IsHandOverRightShoulder(Body body, JointType Hand)
         {
             var rightShoulder = body.Joints[JointType.ShoulderRight];
-            var hand = body.Joints[JointType.HandRight];
-            int rightScore = (hand.Position.Y > rightShoulder.Position.Y) ? 50 : 0;
+            var rightElbow = body.Joints[JointType.ElbowRight];
+            int rightScore = (rightElbow.Position.Y > rightShoulder.Position.Y) ? 50 : 0;
             return rightScore;
+        }
+
+        private String feedback(Body body)
+        {
+            var leftElbow = body.Joints[JointType.ElbowLeft];
+            var rightElbow = body.Joints[JointType.ElbowRight];
+            var leftShoulder = body.Joints[JointType.ShoulderLeft];
+            var rightShoulder = body.Joints[JointType.ShoulderRight];
+            double gap = 0.15;
+            String result = "";
+
+            if ((leftElbow.Position.Y > leftShoulder.Position.Y) || (rightElbow.Position.Y > rightShoulder.Position.Y)){
+                if (rightElbow.Position.Y < rightShoulder.Position.Y)
+                {
+                    result = "오른팔을 더 올려주세요";
+                }
+                else if (leftElbow.Position.Y < leftShoulder.Position.Y)
+                {
+                    result = "왼팔을 더 올려주세요";
+                }
+            }
+            else
+            {
+                if((rightElbow.Position.Y > rightShoulder.Position.Y-gap) && (rightElbow.Position.Y < leftElbow.Position.Y))
+                {
+                    result = "오른팔을 더 올려주세요!";
+                }
+                else if((leftElbow.Position.Y > rightShoulder.Position.Y - gap) &&(leftElbow.Position.Y < rightElbow.Position.Y))
+                {
+                    result = "왼팔을 더 올려주세요!";
+                }
+            }
+            
+
+            return result;
         }
 
         // 여기까지 코드추가 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
