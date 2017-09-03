@@ -97,7 +97,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
                         "ScrollViewer control hosting a photo, enabling scrolling and zooming.",
                         itemContent,
                         group1,
-                        typeof(ScrollViewerSample)));
+                        typeof(Squat)));
             this.AllGroups.Add(group1);
         }
 
