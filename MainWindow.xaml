@@ -7,11 +7,6 @@
         xmlns:local="clr-namespace:Microsoft.Samples.Kinect.ControlsBasics"
         Name="ControlsBasicsWindow"
         Title="Controls Basics"
-        mc:Ignorable="d"
-        d:DesignWidth="1200"
-        d:DesignHeight="700"
-        MinWidth="500"
-        MinHeight="700"
         FontFamily="Segoe UI"
         WindowState="Maximized"
         >
