@@ -401,9 +401,9 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
                             {
                                 isCnt = true;
                             }
-                            String score = scoreTemp.ToString();
-                            FormattedText GetScore = new FormattedText(score, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 15, Brushes.White);
-                            System.Windows.Point ScorePosition = new System.Windows.Point(430, 30);
+                            String result = feedback(body);
+                            FormattedText GetScore = new FormattedText(result, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 15, Brushes.White);
+                            System.Windows.Point ScorePosition = new System.Windows.Point(200, 30);
                             dc.DrawText(GetScore, ScorePosition);
 
                             String cnt = count.ToString();
@@ -464,6 +464,77 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
 
             int Score = (hand.Position.Y > neck.Position.Y) ? 25 : 0;
             return Score;
+        }
+
+        private String feedback(Body body)
+        {
+            var leftHand = body.Joints[JointType.HandLeft];
+            var rightHand = body.Joints[JointType.HandRight];
+            var leftElbow = body.Joints[JointType.ElbowLeft];
+            var rightElbow = body.Joints[JointType.ElbowRight];
+            var neck = body.Joints[JointType.Neck];
+            var head = body.Joints[JointType.Head];
+            String result = "";
+            double gap = 0.05;
+
+
+            if (leftElbow.Position.Y > head.Position.Y && rightElbow.Position.Y > head.Position.Y)
+            {
+                if (leftElbow.Position.X + gap < leftHand.Position.X && rightElbow.Position.X - gap > rightHand.Position.X)
+                {
+                    result = "양 팔을 쭉~~펴주세용!!";
+                }
+                else if (leftElbow.Position.X + gap < leftHand.Position.X && rightElbow.Position.X - gap < rightHand.Position.X)
+                {
+                    result = "왼쪽 팔을 쭉~~펴주세용!!";
+                }
+                else if (leftElbow.Position.X + gap > leftHand.Position.X && rightElbow.Position.X - gap > rightHand.Position.X)
+                {
+                    result = "오른쪽 팔을 쭉~~펴주세용!!";
+                }
+            }
+            else {
+                if (leftElbow.Position.Y > neck.Position.Y && rightElbow.Position.Y < neck.Position.Y)
+                {
+                    result = "오른손을 더 올려주세요";
+                }
+                else if (leftElbow.Position.Y < neck.Position.Y && rightElbow.Position.Y > neck.Position.Y)
+                {
+                    result = "왼손을 더 올려주세요";
+                }
+            }
+
+            return result;
+        }
+
+        private String StrFeedback(Body body)
+        {
+            var leftHand = body.Joints[JointType.HandLeft];
+            var rightHand = body.Joints[JointType.HandRight];
+            var leftElbow = body.Joints[JointType.ElbowLeft];
+            var rightElbow = body.Joints[JointType.ElbowRight];
+            var neck = body.Joints[JointType.Neck];
+            var head = body.Joints[JointType.Head];
+            String result = "";
+            double gap = 0.1;
+
+            if(leftElbow.Position.Y > neck.Position.Y && rightElbow.Position.Y > neck.Position.Y)
+             {
+                if(leftElbow.Position.X+gap < leftHand.Position.X && rightElbow.Position.X-gap > rightHand.Position.X)
+                {
+                    result = "양 팔을 쭉~~펴주세용!!";
+                }
+                else if(leftElbow.Position.X+gap < leftHand.Position.X && rightElbow.Position.X-gap < rightHand.Position.X)
+                {
+                    result = "왼쪽 팔을 쭉~~펴주세용!!";
+                }
+                else if(leftElbow.Position.X+gap > leftHand.Position.X && rightElbow.Position.X-gap > rightHand.Position.X)
+                {
+                    result = "오른쪽 팔을 쭉~~펴주세용!!";
+                }
+            }
+
+            return result;
         }
 
 

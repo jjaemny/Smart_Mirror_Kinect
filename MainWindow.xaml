@@ -45,7 +45,7 @@
                         <ItemsControl Grid.Row="0" Name="itemsControl" ItemTemplate="{StaticResource MainListTemplate}" Button.Click="MainItemButtonClick">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <WrapPanel VerticalAlignment="Center" Orientation="Vertical" />
+                                    <WrapPanel VerticalAlignment="Center" Orientation="Vertical" Margin="40,0,40,0" />
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                         </ItemsControl>

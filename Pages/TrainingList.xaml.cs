@@ -45,6 +45,7 @@
             // Since the selection dialog covers the entire interact-able area, we should also complete
             // the current interaction of all other pointers.  This prevents other users interacting with elements
             // that are no longer visible.
+            this.kinectRegion.InputPointerManager.CompleteGestures();
 
             e.Handled = true;
         }
