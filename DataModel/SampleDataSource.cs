@@ -80,8 +80,8 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
                         typeof(SideLateralRaise)));
             group1.Items.Add(
                     new SampleDataItem(
-                        "Group-1-Item-2",
-                        "CheckBoxes and RadioButtons",
+                        "Squat",
+                        "스쿼트",
                         string.Empty,
                         "Assets/lightGray.png",
                         "CheckBox and RadioButton controls",
@@ -90,14 +90,14 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
                         typeof(Squat)));
             group1.Items.Add(
                     new SampleDataItem(
-                        "Group-1-Item-5",
-                        "Zoomable Photo",
+                        "DumbbellShoulderPress",
+                        "덤벨숄더프레스",
                         string.Empty,
                         "Assets/lightGray.png",
                         "ScrollViewer control hosting a photo, enabling scrolling and zooming.",
                         itemContent,
                         group1,
-                        typeof(Squat)));
+                        typeof(DumbbellShoulderPress)));
             this.AllGroups.Add(group1);
         }
 
