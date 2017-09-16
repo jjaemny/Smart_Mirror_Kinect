@@ -468,7 +468,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
                         "CheckBox and RadioButton controls",
                         itemContent,
                         group1,
-                        typeof(SideLateralRaise)));
+                        typeof(Squat)));
             group1.Items.Add(
                     new TrainingDataItem(
                         "Group-1-Item-5",
@@ -478,7 +478,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics.DataModel
                         "ScrollViewer control hosting a photo, enabling scrolling and zooming.",
                         itemContent,
                         group1,
-                        typeof(SideLateralRaise)));
+                        typeof(DumbbellShoulderPress)));
             this.AllGroups.Add(group1);
         }
 

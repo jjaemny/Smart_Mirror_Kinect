@@ -141,7 +141,9 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
         /// 
 
         static int count = 0;       //운동을 한 횟수
-        static bool isCnt = true;   //flag
+        static int score = 0;
+        static String charScore = "";
+        static String feed = "";
 
         public DumbbellShoulderPress()
         {
@@ -383,36 +385,37 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
 
                             this.DrawBody(joints, jointPoints, dc, drawPen);
 
-                            // 코드 추가 (변수 선언 및 메소드 선언)
+                            //// 코드 추가 (변수 선언 및 메소드 선언)
 
 
 
-                            //int scoreTemp = isLeftHandOverHead + isRightHandOverHead + leftLeg + rightLeg;
-                            int scoreTemp = isLeftElbow(body, JointType.HandRight) + isRightElbow(body, JointType.HandLeft) + isLeftHand(body) + isRightHand(body);
+                            ////int scoreTemp = isLeftHandOverHead + isRightHandOverHead + leftLeg + rightLeg;
+                            //int scoreTemp = isLeftElbow(body, JointType.HandRight) + isRightElbow(body, JointType.HandLeft) + isLeftHand(body) + isRightHand(body);
 
-                            if (scoreTemp == 100 & isCnt)
-                            {
-                                count++;
-                                isCnt = false;
+                            //if (scoreTemp == 100 & isCnt)
+                            //{
+                            //    count++;
+                            //    isCnt = false;
 
-                            }
+                            //}
 
-                            if (scoreTemp == 0)
-                            {
-                                isCnt = true;
-                            }
-                            String result = feedback(body);
-                            FormattedText getFeedback = new FormattedText(result, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 15, Brushes.White);
-                            System.Windows.Point ScorePosition = new System.Windows.Point(200, 30);
-                            dc.DrawText(getFeedback, ScorePosition);
+                            //if (scoreTemp == 0)
+                            //{
+                            //    isCnt = true;
+                            //}
+                            //String result = feedback(body);
+                            //FormattedText getFeedback = new FormattedText(result, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 15, Brushes.White);
+                            //System.Windows.Point ScorePosition = new System.Windows.Point(200, 30);
+                            //dc.DrawText(getFeedback, ScorePosition);
 
-                            String cnt = count.ToString();
-                            FormattedText cntText = new FormattedText(cnt, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 15, Brushes.White);
-                            System.Windows.Point cntPosition = new System.Windows.Point(430, 70);
-                            dc.DrawText(cntText, cntPosition);
-                            //여기까지 코드 추가
+                            //String cnt = count.ToString();
+                            //FormattedText cntText = new FormattedText(cnt, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 15, Brushes.White);
+                            //System.Windows.Point cntPosition = new System.Windows.Point(430, 70);
+                            //dc.DrawText(cntText, cntPosition);
+                            ////여기까지 코드 추가
 
-
+                            feedback(body, dc);
+                            
                         }
                     }
 
@@ -428,45 +431,8 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
          * 그리고 리턴시킴 
          */
 
-        private int isLeftElbow(Body body, JointType Hand)
-        {
-            var head = body.Joints[JointType.Head];
-            var elbow = body.Joints[JointType.ElbowLeft];
 
-            int leftScore = (elbow.Position.Y > head.Position.Y) ? 25 : 0;
-            return leftScore;
-        }
-
-        private int isRightElbow(Body body, JointType Hand)
-        {
-            var head = body.Joints[JointType.Head];
-            var elbow = body.Joints[JointType.ElbowRight];
-
-            int rightScore = (elbow.Position.Y > head.Position.Y) ? 25 : 0;
-            return rightScore;
-        }
-
-        private int isLeftHand(Body body)
-        {
-            var hand = body.Joints[JointType.HandLeft];
-            var neck = body.Joints[JointType.Neck];
-            var head = body.Joints[JointType.Head];
-
-            int Score = (hand.Position.Y > neck.Position.Y) ? 25 : 0;
-            return Score;
-        }
-
-        private int isRightHand(Body body)
-        {
-            var hand = body.Joints[JointType.HandRight];
-            var neck = body.Joints[JointType.Neck];
-            var head = body.Joints[JointType.Head];
-
-            int Score = (hand.Position.Y > neck.Position.Y) ? 25 : 0;
-            return Score;
-        }
-
-        private String feedback(Body body)
+        private void feedback(Body body, DrawingContext dc)
         {
             var leftHand = body.Joints[JointType.HandLeft];
             var rightHand = body.Joints[JointType.HandRight];
@@ -474,37 +440,81 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
             var rightElbow = body.Joints[JointType.ElbowRight];
             var neck = body.Joints[JointType.Neck];
             var head = body.Joints[JointType.Head];
-            String result = "";
+            var leftShoulder = body.Joints[JointType.ShoulderLeft];
+            var rightShoulder = body.Joints[JointType.ShoulderRight];
+
             double gap = 0.05;
 
 
-            if (leftElbow.Position.Y > head.Position.Y && rightElbow.Position.Y > head.Position.Y)
+            switch (score)
             {
-                if (leftElbow.Position.X + gap < leftHand.Position.X && rightElbow.Position.X - gap > rightHand.Position.X)
-                {
-                    result = "양 팔을 쭉~~펴주세용!!";
-                }
-                else if (leftElbow.Position.X + gap < leftHand.Position.X && rightElbow.Position.X - gap < rightHand.Position.X)
-                {
-                    result = "왼쪽 팔을 쭉~~펴주세용!!";
-                }
-                else if (leftElbow.Position.X + gap > leftHand.Position.X && rightElbow.Position.X - gap > rightHand.Position.X)
-                {
-                    result = "오른쪽 팔을 쭉~~펴주세용!!";
-                }
-            }
-            else {
-                if (leftElbow.Position.Y > neck.Position.Y && rightElbow.Position.Y < neck.Position.Y)
-                {
-                    result = "오른손을 더 올려주세요";
-                }
-                else if (leftElbow.Position.Y < neck.Position.Y && rightElbow.Position.Y > neck.Position.Y)
-                {
-                    result = "왼손을 더 올려주세요";
-                }
+                case 0:
+                    if ((leftElbow.Position.Y > leftShoulder.Position.Y && rightElbow.Position.Y > rightShoulder.Position.Y))
+                    {
+                            score = 1;
+                            charScore = "BAD";
+                            feed = "양쪽 팔을 더 올려주세요.";
+                    }
+                    break;
+                case 1:
+                    if ((leftElbow.Position.Y > neck.Position.Y && rightElbow.Position.Y > neck.Position.Y))
+                    {
+                        if (rightElbow.Position.Y > neck.Position.Y)
+                        {
+                            feed = "오른팔을 더 올려주세요";
+                            score = 2;
+                            charScore = "BAD";
+                        }
+                        else if (leftElbow.Position.Y > neck.Position.Y)
+                        {
+                            feed = "왼팔을 더 올려주세요";
+                            score = 2;
+                            charScore = "BAD";
+                        }
+                    }
+                    break;
+                case 2:
+                    if ((leftElbow.Position.Y > head.Position.Y && rightElbow.Position.Y > head.Position.Y))
+                    {
+                        if (leftElbow.Position.X > leftShoulder.Position.X - 0.05 && rightElbow.Position.X < rightShoulder.Position.X + 0.05)
+                        {
+                            charScore = "PERFECT";
+                            feed = "완벽합니다.";
+                            score = 3;
+                        }
+                        else
+                        {
+                            charScore = "GOOD";
+                            feed = "팔을 더 펴주세요";
+                            score = 2;
+                        }
+                    }
+                    break;
             }
 
-            return result;
+            if ((leftElbow.Position.Y < leftShoulder.Position.Y && rightElbow.Position.Y < rightShoulder.Position.Y) && (score > 0))
+            {
+                score = 0;
+                count++;
+            }
+
+            if (score == 0)
+            {
+
+                FormattedText getFeed = new FormattedText(feed.ToString(), CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 15, Brushes.White);
+                System.Windows.Point feedPosition = new System.Windows.Point(200, 30);
+                dc.DrawText(getFeed, feedPosition);
+
+
+                FormattedText getCount = new FormattedText(count.ToString(), CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 15, Brushes.White);
+                System.Windows.Point ScorePosition = new System.Windows.Point(430, 70);
+                dc.DrawText(getCount, ScorePosition);
+
+                String cnt = count.ToString();
+                FormattedText charText = new FormattedText(charScore, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 15, Brushes.White);
+                System.Windows.Point charPosition = new System.Windows.Point(430, 30);
+                dc.DrawText(charText, charPosition);
+            }
         }
 
 
@@ -587,41 +597,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
         /// <param name="handPosition">position of the hand</param>
         /// <param name="drawingContext">drawing context to draw to</param>
         ///
-        // 여기서부터 코드추가 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        /*
-         * 여기는 손에 불빛을 바꾸는 부분인데
-         * 트루시 open(청) false시 (빨)로변하게 표시
-         * 특이점은 손을들고있는동안 계속 연속으로 트루케이스에 접근됨.
-         */
-        private void DrawHandA(int leftScore, Point handPosition, DrawingContext drawingContext)
-        {
-
-            switch (leftScore)
-            {
-                case 0:
-                    drawingContext.DrawEllipse(this.handClosedBrush, null, handPosition, HandSize, HandSize);
-                    break;
-                case 50:
-                    drawingContext.DrawEllipse(this.handOpenBrush, null, handPosition, HandSize, HandSize);
-                    System.Console.WriteLine("왼손을 앞으로 쭉 뻗었다.");
-
-                    break;
-            }
-        }
-        private void DrawHandB(int rightScore, Point handPosition, DrawingContext drawingContext)
-        {
-            switch (rightScore)
-            {
-                case 0:
-                    drawingContext.DrawEllipse(this.handClosedBrush, null, handPosition, HandSize, HandSize);
-                    break;
-                case 50:
-                    drawingContext.DrawEllipse(this.handOpenBrush, null, handPosition, HandSize, HandSize);
-                    System.Console.WriteLine("오른손을 앞으로 쭉 뻗었다.");
-                    break;
-            }
-        }
-        // 여기까지 코드추가 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+        
 
 
 

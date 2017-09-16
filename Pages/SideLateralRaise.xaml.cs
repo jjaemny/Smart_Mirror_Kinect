@@ -141,9 +141,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
         /// 
 
         static int count = 0;       //운동을 한 횟수
-        static bool isCnt = true;   //flag
         static int score = 0;
-        static int temp = 0;
         static String charScore = "";
         static String feed = "";
 
@@ -471,12 +469,11 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
             switch (score)
             {
                 case 0 :
-                    if((leftHand.Position.Y > mid.Position.Y) && (rightHand.Position.Y > mid.Position.Y) && (score == 0)){
+                    if((leftHand.Position.Y > mid.Position.Y) && (rightHand.Position.Y > mid.Position.Y)){
                         score = 1;
                         charScore = "BAD";
                         feed = "양 팔을 더 올려주세요.";
                     }
-                    System.Console.WriteLine("0");
                     break;
                 case 1 :
                     if ((leftElbow.Position.Y > leftShoulder.Position.Y) || (rightElbow.Position.Y > rightShoulder.Position.Y))
@@ -494,7 +491,6 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
                             charScore = "GOOD";
                         }
                     }
-                    System.Console.WriteLine("1");
                     break;
                 case 2 :
                     if ((leftElbow.Position.Y > leftShoulder.Position.Y) && (rightElbow.Position.Y > rightShoulder.Position.Y))
@@ -503,7 +499,6 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
                         feed = "완벽합니다.";
                         score = 3;
                     }
-                    System.Console.WriteLine("2");
                     break;
             }
 
@@ -511,8 +506,6 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
             {
                 score = 0;
                 count++;
-
-                System.Console.WriteLine("점수");
             }
 
             if(score == 0)
