@@ -10,8 +10,8 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <ContentControl Grid.Row="1" x:Name="navigationRegion">
-            <Grid x:Name="kinectRegionGrid">
+        <ContentControl Grid.Row="1" x:Name="trainingNavigationRegion">
+            <Grid x:Name="trainingRegionGrid">
                 <ScrollViewer Grid.Row="0" Name="scrollViewer" 
                                 HorizontalScrollBarVisibility="Auto"
                                 VerticalScrollBarVisibility="Disabled">
