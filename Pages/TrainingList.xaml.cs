@@ -18,13 +18,6 @@
         public TrainingList()
         {
             this.InitializeComponent();
-
-
-            App app = ((App)Application.Current);
-
-            // Use the default sensor
-
-            //// Add in display content
             var trainingDataSource = TrainingDataSource.GetGroup("Group-1");
             this.itemsControl.ItemsSource = trainingDataSource;
         }
@@ -33,20 +26,27 @@
         {
             var button = (Button)e.OriginalSource;
             TrainingDataItem trainingDataItem = button.DataContext as TrainingDataItem;
-            
-            var selectionDisplay = new SelectionDisplay(button.Content as string);
-            this.kinectRegionGrid.Children.Add(selectionDisplay);
 
-            // Selection dialog covers the entire interact-able area, so the current press interaction
-            // should be completed. Otherwise hover capture will allow the button to be clicked again within
-            // the same interaction (even whilst no longer visible).
-            selectionDisplay.Focus();
+            if (trainingDataItem != null && trainingDataItem.NavigationPage != null)
+            {
+                trainingNavigationRegion.Content = Activator.CreateInstance(trainingDataItem.NavigationPage);
+            }
+            else
+            {
+                var selectionDisplay = new SelectionDisplay(button.Content as string);
+                this.trainingRegionGrid.Children.Add(selectionDisplay);
+                
+                // Selection dialog covers the entire interact-able area, so the current press interaction
+                // should be completed. Otherwise hover capture will allow the button to be clicked again within
+                // the same interaction (even whilst no longer visible).
+                selectionDisplay.Focus();
 
-            // Since the selection dialog covers the entire interact-able area, we should also complete
-            // the current interaction of all other pointers.  This prevents other users interacting with elements
-            // that are no longer visible.
+                // Since the selection dialog covers the entire interact-able area, we should also complete
+                // the current interaction of all other pointers.  This prevents other users interacting with elements
+                // that are no longer visible.
 
-            e.Handled = true;
+                e.Handled = true;
+            }
         }
     }
 }

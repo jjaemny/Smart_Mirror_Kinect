@@ -46,9 +46,10 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
 
         // 메인 리스트에서 버튼 클릭시 이벤트
         private void MainItemButtonClick(object sender, RoutedEventArgs e)
-        {            
+        {
             var button = (Button)e.OriginalSource;
             SampleDataItem sampleDataItem = button.DataContext as SampleDataItem;
+            // System.Console.WriteLine(sampleDataItem);
 
             if (sampleDataItem != null && sampleDataItem.NavigationPage != null)
             {
@@ -59,7 +60,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
             {
                 var selectionDisplay = new SelectionDisplay(button.Content as string);
                 this.kinectRegionGrid.Children.Add(selectionDisplay);
-
+                
                 // Selection dialog covers the entire interact-able area, so the current press interaction
                 // should be completed. Otherwise hover capture will allow the button to be clicked again within
                 // the same interaction (even whilst no longer visible).
