@@ -506,6 +506,11 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
             {
                 score = 0;
                 count++;
+                if (count > 3)
+                {
+                    Type squattype = Type.GetType("Microsoft.Samples.Kinect.ControlsBasics.Squat");
+                    sideLR.Content = Activator.CreateInstance(squattype);
+                }
             }
 
             if(score == 0)
